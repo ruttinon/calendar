@@ -1,0 +1,284 @@
+/* ===================== APP SHELL LAYOUT ===================== */
+.app-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100dvh;
+  width: 100%;
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+/* Sidebar — hidden on mobile */
+.sidebar {
+  display: none;
+}
+
+.app-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 90px;
+  scroll-behavior: smooth;
+}
+
+/* ===================== BOTTOM NAV (Mobile) ===================== */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 88px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+  z-index: 100;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0 -4px 24px rgba(43, 109, 239, 0.07);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 60px;
+  gap: 4px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-item:active { transform: scale(0.88); }
+
+.nav-item .nav-icon-wrap {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: all 0.25s;
+}
+
+.nav-item.active { color: var(--color-accent); }
+.nav-item.active .nav-icon-wrap { background: var(--color-accent-soft); }
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Center create button */
+.nav-item-main {
+  color: #fff;
+  transform: translateY(-8px);
+}
+
+.nav-item-main .nav-icon-wrap {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+  box-shadow: var(--shadow-accent);
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.nav-item-main:active { transform: translateY(-8px) scale(0.9); }
+.nav-item-main .nav-label { color: var(--color-accent); }
+
+/* ===================== TABLET / DESKTOP SIDEBAR ===================== */
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 72px;
+    background: #FFFFFF;
+    border-right: 1px solid var(--color-border);
+    padding: 20px 0 24px;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+    z-index: 50;
+    box-shadow: 2px 0 12px rgba(43, 109, 239, 0.05);
+    transition: width 0.25s ease;
+  }
+
+  .bottom-nav { display: none; }
+  .app-content { padding-bottom: 0; }
+
+  .sidebar-logo {
+    margin-bottom: 28px;
+  }
+
+  .sidebar-logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    box-shadow: var(--shadow-accent);
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  .sidebar-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 4px;
+    border-radius: 14px;
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .sidebar-nav-item:hover {
+    background: var(--color-surface-2);
+    color: var(--color-text-secondary);
+  }
+
+  .sidebar-nav-item.active {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+
+  .sidebar-icon-wrap {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+  .sidebar-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .sidebar-nav-main {
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light)) !important;
+    box-shadow: var(--shadow-accent);
+    margin: 4px 0;
+  }
+
+  .sidebar-nav-main:hover {
+    opacity: 0.9;
+    color: #fff !important;
+  }
+
+  .sidebar-footer {
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 12px 8px 0;
+  }
+
+  .sidebar-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-accent);
+    cursor: pointer;
+  }
+}
+
+/* ===================== WIDE DESKTOP — wider sidebar ===================== */
+@media (min-width: 1100px) {
+  .sidebar {
+    width: 200px;
+    align-items: flex-start;
+    padding: 24px 0 28px;
+  }
+
+  .sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+    margin-bottom: 32px;
+  }
+
+  .sidebar-logo::after {
+    content: 'Daily Workspace';
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+
+  .sidebar-nav {
+    padding: 0 10px;
+  }
+
+  .sidebar-nav-item {
+    flex-direction: row;
+    gap: 10px;
+    padding: 11px 14px;
+    justify-content: flex-start;
+  }
+
+  .sidebar-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .sidebar-footer {
+    padding: 12px 16px 0;
+    justify-content: flex-start;
+  }
+
+  .sidebar-footer::after {
+    content: 'Ratthinon';
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+}
