@@ -142,13 +142,12 @@ const Notes = () => {
                  const newIdx = folders.findIndex(f => f.id === over.id);
                  const reordered = arrayMove(folders, oldIdx, newIdx);
                  setFolders(reordered);
-                 for (let i = 0; i < reordered.length; i++) {
-                     fetch(`http://localhost:8001/folders/${reordered[i].id}`, {
-                         method: 'PUT',
-                         headers: { 'Content-Type': 'application/json' },
-                         body: JSON.stringify({ order_index: i })
-                     });
-                 }
+                 await Promise.all(
+                     reordered.map((folder, index) =>
+                         api.updateFolder(folder.id, { order_index: index })
+                     )
+                 );
+                 loadData();
                  return;
              }
         }

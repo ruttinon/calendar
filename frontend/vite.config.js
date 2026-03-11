@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/calendar/' : '/',
   plugins: [react()],
   server: {
     port: 5178,
@@ -10,4 +11,4 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react-signature-canvas']
   }
-})
+}))

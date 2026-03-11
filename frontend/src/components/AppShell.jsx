@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { Home, FileText, Plus, LayoutTemplate, User } from 'lucide-react';
+import { isDemoMode } from '../api';
 import './AppShell.css';
 
 const AppShell = () => {
@@ -46,6 +47,11 @@ const AppShell = () => {
 
       {/* Main content */}
       <div className="app-body">
+        {isDemoMode && (
+          <div className="demo-banner">
+            Demo mode: data is saved in this browser only.
+          </div>
+        )}
         <main className="app-content">
           <Outlet />
         </main>

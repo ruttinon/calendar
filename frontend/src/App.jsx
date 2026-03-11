@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AppShell from './components/AppShell';
 import Home from './pages/Home';
 import DailyWorkspace from './pages/DailyWorkspace';
@@ -14,7 +14,7 @@ const Create = () => <Navigate to={`/workspace/${format(new Date(), 'yyyy-MM-dd'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<AppShell />}>
           <Route index element={<Navigate to="/home" replace />} />
@@ -25,8 +25,9 @@ function App() {
           <Route path="templates" element={<Templates />} />
           <Route path="profile" element={<Profile />} />
         </Route>
+        <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
